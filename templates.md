@@ -60,8 +60,8 @@ on:
 
 env:
 {% raw %}
-  ECR_REPOSITORY_URL: $`{{ env.ECR_REPOSITORY_URL }}
-  ECS_SERVICE_ARN: $`{`{ env.ECS_SERVICE_ARN }}
+  ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
+  ECS_SERVICE_ARN: ${{ env.ECS_SERVICE_ARN }}
 {% endraw %}
 
 jobs:
@@ -78,8 +78,11 @@ jobs:
       
     - name: Deploy to production
       run: |
+      {% raw %}
         echo "API Key: ${{ env.ECR_REPOSITORY_URL }}"
         echo "App Port: ${{ env.ECS_SERVICE_ARN }}"
+        {% endraw %}
+
         # ... Deployment commands here ...
 ```
 

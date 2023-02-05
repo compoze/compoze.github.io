@@ -9,9 +9,9 @@ Compoze Service Catalog allows you to provide your own custom Golden Templates. 
 Compoze supports most modern languages, as long as it can be properly dockerized or bundled. There are four types of applications that Compoze supports
 
 1. API service
-2. Website service
-3. Fullstack (API & Website) service
-4. Fullstack Serverless (Amplify & Lambda)
+2. Web App service
+3. Fullstack (API & Web App) service
+4. Fullstack Serverless (Amplify Web App & Lambda APIs)
 
 ## API Service Template Guidelines
 

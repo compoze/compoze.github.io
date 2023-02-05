@@ -6,7 +6,7 @@ filename: templates.md
 
 Compoze Service Catalog allows you to provide your own custom Golden Templates. This allows your organization to provide your own application code standards and defaults, while still leveraging the power of the Compoze platform. 
 
-Compoze supports most modern languages, as long as it can be properly dockerized. There are four types of applications that Compoze supports
+Compoze supports most modern languages, as long as it can be properly dockerized or bundled. There are four types of applications that Compoze supports
 
 1. API service
 2. Website service
@@ -21,12 +21,12 @@ In order to create a Golden Template that will work with the Compoze Service Cat
 
 The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
 
-| Template Key | Replacement Value |
-|--------------|-------------------|
-| <COMPOZE_SERVICE_NAME> | The name of the service you configured via the Compoze Service Catalog |
-| <AWS_REGION> | AWS Region name that your service has been created in |
-| <AWS_ACCOUNT_ID> | AWS Account ID that your service is created in |
-| <COMPOZE_PRODUCT_NAME> | The name of the Compoze Product that the service is created in |
+| Template Key         | Replacement Value                                                      |
+| -------------------- | ---------------------------------------------------------------------- |
+| COMPOZE_SERVICE_NAME | The name of the service you configured via the Compoze Service Catalog |
+| AWS_REGION           | AWS Region name that your service has been created in                  |
+| AWS_ACCOUNT_ID       | AWS Account ID that your service is created in                         |
+| COMPOZE_PRODUCT_NAME | The name of the Compoze Product that the service is created in         |
 
 ### Environment Files
 

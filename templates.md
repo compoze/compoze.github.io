@@ -6,7 +6,7 @@ filename: templates.md
 
 Compoze Service Catalog allows you to provide your own custom Golden Templates. This allows your organization to provide your own application code standards and defaults, while still leveraging the power of the Compoze platform. 
 
-Compoze supports most all modern languages, as long as it can be properly dockerized. There are three types of applications that Compoze supports
+Compoze supports most modern languages, as long as it can be properly dockerized. There are four types of applications that Compoze supports
 
 1. API service
 2. Website service
@@ -19,7 +19,7 @@ In order to create a Golden Template that will work with the Compoze Service Cat
 
 ### Replacement Values
 
-Compoze Service Catalog template engine works by replacing template value names (such as application name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
+The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
 
 | Template Key | Replacement Value |
 |--------------|-------------------|
@@ -30,7 +30,7 @@ Compoze Service Catalog template engine works by replacing template value names 
 
 ### Environment Files
 
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The following key value pairs will be provided in each environment file:
+Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of your project. The following key value pairs will be provided in each environment file:
 
 ```env
 ECR_REPOSITORY_URL=...
@@ -46,7 +46,7 @@ ENVIRONMENT=...
 
 You should use these values to build any automation scripts required to build, test, and deploy your appliction
 
-You can also choose to privde your own Github Actions files. There are a few recommendations and restrictions:
+You can also choose to provde your own Github Actions file to orchestrate you continuous delivery pipeline. There are a few recommendations and restrictions:
 
 1. **Environment Variables:** Environment specific variables are provided in seperate .env files (i.e. prod.env, dev.env, etc). In order to access these variables, for things like deploying to a specific environment, you can either include a ```source X.env``` command in your scripts, or configure your Github Actions configuration file to source the variables before. Below is an example of how you might configure that:
 
@@ -59,8 +59,8 @@ on:
       - main
 
 env:
-  API_KEY: ${{ env.API_KEY }}
-  APP_PORT: ${{ env.APP_PORT }}
+  ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
+  ECS_SERVICE_ARN: ${{ env.ECS_SERVICE_ARN }}
 
 jobs:
   deploy:
@@ -71,17 +71,17 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Set environment variables
-      run: echo "::set-env name=API_KEY::$(cat prod.env | grep API_KEY | awk -F '=' '{print $2}')"
-      run: echo "::set-env name=APP_PORT::$(cat prod.env | grep APP_PORT | awk -F '=' '{print $2}')"
+      run: echo "::set-env name=ECR_REPOSITORY_URL::$(cat prod.env | grep ECR_REPOSITORY_URL | awk -F '=' '{print $2}')"
+      run: echo "::set-env name=ECS_SERVICE_ARN::$(cat prod.env | grep ECS_SERVICE_ARN | awk -F '=' '{print $2}')"
       
     - name: Deploy to production
       run: |
-        echo "API Key: ${{ env.API_KEY }}"
-        echo "App Port: ${{ env.APP_PORT }}"
+        echo "API Key: ${{ env.ECR_REPOSITORY_URL }}"
+        echo "App Port: ${{ env.ECS_SERVICE_ARN }}"
         # ... Deployment commands here ...
 ```
 
-2. **AWS Access:** In order to deploy your application to the Compoze managed AWS Infrastructure, you need to provide access to your deployment scripts in your Github Actions pipelines. Compoze ***strongly*** encourages you to not use AWS Access Key credentials to do this, but rather to rely on the pre-configured Github OIDC deployments. Since Compoze has already configured this connection for you, all you need to do is use the Github [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) plugin. Below is an example deployment step that uses the plugin:
+2. **AWS Access:** In order to deploy your application to the Compoze managed AWS Infrastructure, in your account, you need to provide access to the deployment scripts in your Github Actions pipelines. Compoze ***strongly*** encourages you to not use AWS Access Key credentials to do this, but rather to rely on the pre-configured Github OIDC deployments. Since Compoze has already configured this connection for you, all you need to do is use the Github [configure-aws-credentials](https://github.com/aws-actions/configure-aws-credentials) plugin. Below is an example deployment step that uses the plugin:
 
 ```yaml
 deployprod:
@@ -111,4 +111,4 @@ deployprod:
           AWS_ACCOUNT_ID: <AWS_ACCOUNT_ID>
 ```
 
-Compoze preconfigures your CompozeAutomationRole to allow Github to assume this role via [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services).
+Compoze preconfigures your CompozeAutomationRole to allow Github to assume this role via [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services), so no other configuration is required.

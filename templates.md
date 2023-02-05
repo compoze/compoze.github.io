@@ -46,7 +46,7 @@ ENVIRONMENT=...
 
 You should use these values to build any automation scripts required to build, test, and deploy your appliction
 
-You can also choose to provde your own Github Actions file to orchestrate you continuous delivery pipeline. There are a few recommendations and restrictions:
+You can also choose to provde your own Github Actions file to orchestrate your continuous delivery pipeline. There are a few recommendations and restrictions:
 
 1. **Environment Variables:** Environment specific variables are provided in seperate .env files (i.e. prod.env, dev.env, etc). In order to access these variables, for things like deploying to a specific environment, you can either include a ```source X.env``` command in your scripts, or configure your Github Actions configuration file to source the variables before. Below is an example of how you might configure that:
 

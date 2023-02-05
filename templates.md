@@ -21,12 +21,12 @@ In order to create a Golden Template that will work with the Compoze Service Cat
 
 The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
 
-| Template Key         | Replacement Value                                                      |
-| -------------------- | ---------------------------------------------------------------------- |
-| COMPOZE_SERVICE_NAME | The name of the service you configured via the Compoze Service Catalog |
-| AWS_REGION           | AWS Region name that your service has been created in                  |
-| AWS_ACCOUNT_ID       | AWS Account ID that your service is created in                         |
-| COMPOZE_PRODUCT_NAME | The name of the Compoze Product that the service is created in         |
+| Template Key             | Replacement Value                                                      |
+| ------------------------ | ---------------------------------------------------------------------- |
+| {% raw %}{{COMPOZE_SERVICE_NAME}}{% endraw %} | The name of the service you configured via the Compoze Service Catalog |
+| {% raw %}{{AWS_REGION}}{% endraw %}           | AWS Region name that your service has been created in                  |
+| {% raw %}{{AWS_ACCOUNT_ID}}{% endraw %}       | AWS Account ID that your service is created in                         |
+| {% raw %}{{COMPOZE_PRODUCT_NAME}}{% endraw %} | The name of the Compoze Product that the service is created in         |
 
 ### Environment Files
 
@@ -117,3 +117,6 @@ deployprod:
 ```
 
 Compoze preconfigures your CompozeAutomationRole to allow Github to assume this role via [OIDC](https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/configuring-openid-connect-in-amazon-web-services), so no other configuration is required.
+
+3. **Deployment Stages:** During the Compoze Product creation process, you will configure the number of environments that will be created for your Services; for example dev, stage, and production environments. In order to deploy to each of these environments, your Github Actions files must contain deployment stages for each environment. 
+4. **Github Actions Configuration:** The standard placement for your Github Actions file to be picked up by Github is in a **.github** directory in the root of your project. Generally, this is labeled something like main.yaml, though the exact naming convention can be left to your discretion

@@ -59,8 +59,8 @@ on:
       - main
 
 env:
-  ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
-  ECS_SERVICE_ARN: ${{ env.ECS_SERVICE_ARN }}
+  ECR_REPOSITORY_URL: $`{`{ env.ECR_REPOSITORY_URL }}
+  ECS_SERVICE_ARN: $`{`{ env.ECS_SERVICE_ARN }}
 
 jobs:
   deploy:

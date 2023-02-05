@@ -79,8 +79,8 @@ jobs:
     - name: Deploy to production
       run: |
       {% raw %}
-        echo "API Key: ${{ env.ECR_REPOSITORY_URL }}"
-        echo "App Port: ${{ env.ECS_SERVICE_ARN }}"
+        echo "ECR Repository URL: ${{ env.ECR_REPOSITORY_URL }}"
+        echo "ECS Service ARN: ${{ env.ECS_SERVICE_ARN }}"
         {% endraw %}
 
         # ... Deployment commands here ...

@@ -1,3 +1,7 @@
+---
+title: Compoze
+filename: README.md
+--- 
 # Compoze Platform
 
 Compoze is a SaaS-based infrastructure management and Platform Ops tool that enables your teams to build production applications in minutes. Compoze makes it easy to build Performant, Secure, Cost Effective, Operationally Excellent, and Reliable applications on AWS. Compoze is built with two core tenants:

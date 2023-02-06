@@ -46,6 +46,12 @@ ENVIRONMENT=...
 
 You should use these values to build any automation scripts required to build, test, and deploy your appliction
 
+### Application Requirements
+
+The only current requirement is that your application, when bundled inside a docker image, is exposed on port **5000**. This is needed to forward traffic from the Compoze configured Load Balancer to your container running in ECS
+
+### Github Actions
+
 You can also choose to provde your own Github Actions file to orchestrate your continuous delivery pipeline. There are a few recommendations and restrictions:
 
 1. **Environment Variables:** Environment specific variables are provided in seperate .env files (i.e. prod.env, dev.env, etc). In order to access these variables, for things like deploying to a specific environment, you can either include a ```source X.env``` command in your scripts, or configure your Github Actions configuration file to source the variables before. Below is an example of how you might configure that:

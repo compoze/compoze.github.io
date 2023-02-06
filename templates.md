@@ -126,3 +126,18 @@ Compoze preconfigures your CompozeAutomationRole to allow Github to assume this 
 
 3. **Deployment Stages:** During the Compoze Product creation process, you will configure the number of environments that will be created for your Services; for example dev, stage, and production environments. In order to deploy to each of these environments, your Github Actions files must contain deployment stages for each environment. 
 4. **Github Actions Configuration:** The standard placement for your Github Actions file to be picked up by Github is in a **.github** directory in the root of your project. Generally, this is labeled something like main.yaml, though the exact naming convention can be left to your discretion
+
+
+
+## Web App Services Template Guidlines
+
+Coming Soon
+
+## Fullstack (API & Web App) service
+
+Coming Soon
+
+
+## Fullstack Serverless (Amplify Web App & Lambda APIs)
+
+Coming soon

@@ -4,12 +4,12 @@ filename: README.md
 --- 
 # Compoze Platform
 
-Compoze is a SaaS-based infrastructure management and Platform Ops tool that enables your teams to build production applications in minutes. Compoze makes it easy to build Performant, Secure, Cost Effective, Operationally Excellent, and Reliable applications on AWS. Compoze is built with two core tenants:
+Compoze is a SaaS-based infrastructure management and Platform Ops tool that enables your teams to build Performant, Secure, Cost Effective, Operationally Excellent, and Reliable applications on AWS, in minutes. Compoze is built with two core tenants:
 
-1. AWS Golden Template
+1. Golden AWS Account
 2. Service Catalog
 
-## Golden Template
+## Golden AWS Account
 
 In order to even begin to deploy applications within AWS, there are core foundational services that must be setup in order to ensure your applications are production-grade. Creating these core AWS services involves a comprehensive approach to ensure operational excellence, cost optimization, security, performance, and reliability are maintained. The work required to achieve this includes:
 
@@ -25,7 +25,7 @@ In order to even begin to deploy applications within AWS, there are core foundat
 
 Normally, each of these areas requires a combination of planning, development, testing, and deployment activities. The teams involved may include developers, operations, security, and infrastructure teams. Ongoing maintenance and updates are also required to ensure that the services continue to meet the goals of operational excellence, cost optimization, security, performance, and reliability.
 
-Compoze will configure, maintain, and operate the AWS Services necessary to give you the proper foundation to build your applications
+Compoze will configure, maintain, and operate the AWS Services necessary to give you the proper foundation to build your applications.
 
 ## Service Catalog
 
@@ -46,38 +46,25 @@ A Compoze Service is made up of the following areas
 1. A Github repository
 2. A golden source code template
 3. CI/CD pipeline
-4. Required AWS Infrastructure to host, manage, and support your application
+4. AWS Infrastructure to host, manage, and support your application
 
 When a new service is created, Compoze will perform the following steps:
 
 1. Create a new repository in your specified Github Organization
-2. Inject your new repository with a golden template. These templates can either be:
-   1. Compoze managed tempalte
+2. Inject your new repository with a golden template. These templates can either be a:
+   1. Compoze managed template
    2. Your own custom template
-3. Update your template with supported values
+3. Update your template with supported values. These values include:
     1. App name
     2. Region
     3. AWS Account Id
     4. Compoze Product Name
-4. Inject environment variable files (for each of your configured environments) with:
-    1. ECR Repository URL
-    2. ECS Service ARN
-    3. ECS Service Name
-    4. ECS Cluster ARN
-    5. ECS Cluster Name
-    6. ECS Task Defintion Arn
-    7. ECS Task Defintion Name
-    8. Base DNS Name
-    9. Environment Name
+4. Inject environment variable files (for each of your configured environments) with values like:
+    1. Base DNS Name
+    2. Environment Name
+    3. Infrastructure resources such as ECR repository, ECS Cluster details, etc
 5. Deploy the necessary AWS Infrastructure for you service
-6. Configure Github Actions pipeline. Compoze requires the following commands be exposed from your package.json. Note that currently, Compoze supported version of Node requires pnpm
-    1. pnpm install
-    2. pnpm build 
-        1. This command should build the application bundle
-    3. pnpm test   
-        1. This command should execute unit tests, and any other self contained tests
-    4. pnpm deploy  
-        1. This command should build the application bundle, build a docker container, publish to the ECR container, update the ecs service to force a new task definition, wait for secs service to become stable
+6. Configure Github Actions pipeline
 7. Execute your Github Actions pipeline
 
 ## Getting Started

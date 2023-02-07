@@ -81,8 +81,8 @@ on:
 
 env:
 {% raw %}
-  ECR_REPOSITORY_URL: ${{ env.ECR_REPOSITORY_URL }}
-  ECS_SERVICE_ARN: ${{ env.ECS_SERVICE_ARN }}
+  VPC_ID: ${{ env.VPC_ID }}
+  SUBNETIDS: ${{ env.SUBNETIDS }}
 {% endraw %}
 
 jobs:
@@ -94,14 +94,14 @@ jobs:
       uses: actions/checkout@v2
       
     - name: Set environment variables
-      run: echo "::set-env name=ECR_REPOSITORY_URL::$(cat prod.env | grep ECR_REPOSITORY_URL | awk -F '=' '{print $2}')"
-      run: echo "::set-env name=ECS_SERVICE_ARN::$(cat prod.env | grep ECS_SERVICE_ARN | awk -F '=' '{print $2}')"
+      run: echo "::set-env name=VPC_ID::$(cat prod.env | grep VPC_ID | awk -F '=' '{print $2}')"
+      run: echo "::set-env name=SUBNETIDS::$(cat prod.env | grep SUBNETIDS | awk -F '=' '{print $2}')"
       
     - name: Deploy to production
       run: |
       {% raw %}
-        echo "ECR Repository URL: ${{ env.ECR_REPOSITORY_URL }}"
-        echo "ECS Service ARN: ${{ env.ECS_SERVICE_ARN }}"
+        echo "Vpc Ids: ${{ env.VPC_ID }}"
+        echo "Subnet Ids: ${{ env.SUBNETIDS }}"
         {% endraw %}
 
         # ... Deployment commands here ...

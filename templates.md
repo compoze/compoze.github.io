@@ -30,7 +30,7 @@ The Compoze Service Catalog template engine works by replacing template value na
 
 ### Environment Files
 
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of your project. The following key value pairs will be provided in each environment file:
+Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be placedin an **environments** folder at the root of your project. The following key value pairs will be provided in each environment file:
 
 ```env
 ECR_REPOSITORY_URL=...
@@ -155,7 +155,7 @@ The Compoze Service Catalog template engine works by replacing template value na
 
 ### Environment Files
 
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
+Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be placedin an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
 
 #### api
 

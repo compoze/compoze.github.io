@@ -32,7 +32,7 @@ Environment files will be places in their respective directories, as described i
 
 ### Replacement Values
 
-The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
+The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The following key value pairs are currently supported replacement values
 
 | Template Key             | Replacement Value                                                      |
 | ------------------------ | ---------------------------------------------------------------------- |
@@ -43,7 +43,7 @@ The Compoze Service Catalog template engine works by replacing template value na
 
 ### Environment Files
 
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
+Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be placed in an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
 
 #### api
 

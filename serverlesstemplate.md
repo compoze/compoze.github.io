@@ -23,9 +23,9 @@ Compoze Service Catalog will still manage your Amplify instances, and expose var
 
 Compoze Service Catalog template engine assumes the following folder structure for you Serverless repository:
 
-api/
+### api/
   This will contain your Lambda handlers and configuration
-ui/
+### ui/
   This will contain your Javascript application
 
 Environment files will be places in their respective directories, as described in the **Environment Files** section below

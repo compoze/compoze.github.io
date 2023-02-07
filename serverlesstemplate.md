@@ -1,6 +1,6 @@
 ---
-title: Templates
-filename: templates.md
+title: ServerlessTemplates
+filename: serverlesstemplate.md
 --- 
 # Template Docs
 
@@ -13,9 +13,22 @@ Compoze supports most modern languages, as long as it can be properly dockerized
 3. Fullstack (API & Web App) service
 4. Fullstack Serverless (Amplify Web App & Lambda APIs)
 
-## API Service Template Guidelines
+## Fullstack Serverless (Amplify Web App & Lambda APIs)
 
-In order to create a Golden Template for an API service, that will work with the Compoze Service Catalog follow the below guidelines:
+Compoze Fullstack Serverless templates put more infrastructure control into your hands by the nature of how Lambda functions are deployed. Compoze strongly recommends tools such as AWS SAM or the Serverless framework to manage and deploy your Lambda infrastructure. 
+Compoze Service Catalog will still manage your Amplify instances, and expose variables you may need to implement your Lambda functions (details such as VPC, HostedZone, Environment, etc) which you can use to build and configure your SAM or Serverless templates.
+
+
+### Application Structure 
+
+Compoze Service Catalog template engine assumes the following folder structure for you Serverless repository:
+
+api/
+  This will contain your Lambda handlers and configuration
+ui/
+  This will contain your Javascript application
+
+Environment files will be places in their respective directories, as described in the **Environment Files** section below
 
 ### Replacement Values
 
@@ -30,25 +43,27 @@ The Compoze Service Catalog template engine works by replacing template value na
 
 ### Environment Files
 
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of your project. The following key value pairs will be provided in each environment file:
+Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
+
+#### api
 
 ```env
-ECR_REPOSITORY_URL=...
-ECS_SERVICE_NAME=...
-ECS_SERVICE_ARN=...
-ECS_CLUSTER_NAME=...
-ECS_CLUSTER_ARN=...
-ECS_TASK_DEFINITION_NAME=...
-ECS_TASK_DEFINITION_ARN=...
+DOMAIN_NAME=...
+HOSTED_ZONE_ID=...
+VPC_ID=...
+SUBNETIDS=...
 BASE_DNS_URL=...
 ENVIRONMENT=...
 ```
 
-You should use these values to build any automation scripts required to build, test, and deploy your appliction
+#### ui
 
-### Application Requirements
-
-The only current requirement is that your application, when bundled inside a docker image, is exposed on port **5000**. This is needed to forward traffic from the Compoze configured Load Balancer to your container running in ECS
+```env
+AMPLIFY_APP_NAME=...
+AMPLIFY_APP_ID=...
+BASE_DNS_URL=...
+ENVIRONMENT=...
+```
 
 ### Github Actions
 
@@ -126,61 +141,3 @@ Compoze preconfigures your CompozeAutomationRole to allow Github to assume this 
 
 3. **Deployment Stages:** During the Compoze Product creation process, you will configure the number of environments that will be created for your Services; for example dev, stage, and production environments. In order to deploy to each of these environments, your Github Actions files must contain deployment stages for each environment. 
 4. **Github Actions Configuration:** The standard placement for your Github Actions file to be picked up by Github is in a **.github** directory in the root of your project. Generally, this is labeled something like main.yaml, though the exact naming convention can be left to your discretion
-
-
-## Fullstack (API & Web App) service
-
-In order to create a Golden Template for a Fullstack application, that will work with the Compoze Service Catalog, follow the below guidelines:
-
-### Application Structure 
-
-Compoze Service Catalog template engine assumes the following folder structure for you Fullstack repository:
-
-api/
-ui/
-
-Environment files will be places in their respective directories, as described in the **Environment Files** section below
-
-### Replacement Values
-
-The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
-
-| Template Key             | Replacement Value                                                      |
-| ------------------------ | ---------------------------------------------------------------------- |
-| {% raw %}{{COMPOZE_SERVICE_NAME}}{% endraw %} | The name of the service you configured via the Compoze Service Catalog |
-| {% raw %}{{AWS_REGION}}{% endraw %}           | AWS Region name that your service has been created in                  |
-| {% raw %}{{AWS_ACCOUNT_ID}}{% endraw %}       | AWS Account ID that your service is created in                         |
-| {% raw %}{{COMPOZE_PRODUCT_NAME}}{% endraw %} | The name of the Compoze Product that the service is created in         |
-
-
-### Environment Files
-
-Compoze will also inject environment variable files (i.e. prod.env) that contain values required to build, deploy, and test your service. The files will be place in an **environments** folder at the root of each respective project (api & ui). The following key value pairs will be provided in each environment file:
-
-#### api
-
-```env
-ECR_REPOSITORY_URL=...
-ECS_SERVICE_NAME=...
-ECS_SERVICE_ARN=...
-ECS_CLUSTER_NAME=...
-ECS_CLUSTER_ARN=...
-ECS_TASK_DEFINITION_NAME=...
-ECS_TASK_DEFINITION_ARN=...
-BASE_DNS_URL=...
-ENVIRONMENT=...
-```
-
-#### ui
-
-```env
-AMPLIFY_APP_NAME=...
-AMPLIFY_APP_ID=...
-BASE_DNS_URL=...
-ENVIRONMENT=...
-```
-
-## Web App Services Template Guidlines
-
-Coming Soon
-

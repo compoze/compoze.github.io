@@ -74,6 +74,7 @@ To get started with Compoze, you will first need to create an account. To do thi
 2. Register a Route53 Domain
 3. Create an IAM Role called CompozeAutomation
 4. Apply Compoze IAM Policies to IAM Role
+5. Enable [billing access](https://docs.aws.amazon.com/IAM/latest/UserGuide/tutorial_billing.html) for IAM Users
    
 ## Support
 If you have any questions or need help with Compoze, you can reach out to our support team at [help@compoze.io](help@compoze.io)

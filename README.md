@@ -70,11 +70,10 @@ When a new service is created, Compoze will perform the following steps:
 ## Getting Started
 To get started with Compoze, you will first need to create an account. To do this, follow these steps:
 
-1. Go to the Compoze website at https://compoze.io
-2. Click on "Sign Up" in the top right corner
-3. Fill out the registration form with your information
-4. The Compoze team will reach out with your account credentials
-5. Log in to your account
+1. Create an [AWS Account](https://aws.amazon.com/free)
+2. Register a Route53 Domain
+3. Create an IAM Role called CompozeAutomation
+4. Apply Compoze IAM Policies to IAM Role
    
 ## Support
 If you have any questions or need help with Compoze, you can reach out to our support team at [help@compoze.io](help@compoze.io)

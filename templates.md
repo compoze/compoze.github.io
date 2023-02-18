@@ -17,6 +17,10 @@ Compoze supports most modern languages, as long as it can be properly dockerized
 
 In order to create a Golden Template for an API service, that will work with the Compoze Service Catalog follow the below guidelines:
 
+### Application Requirements
+
+In order to expose a container externally, via an Application Load Balancer, a port must be exposed for the load balancer to route traffic to. Compoze assumes port 5000, so your API must be running on that port.
+
 ### Replacement Values
 
 The Compoze Service Catalog template engine works by replacing template value names (such as the service name) before adding the template to the Github Repository created for you. The key value pairs are the currently supported replacement values
@@ -131,6 +135,11 @@ Compoze preconfigures your CompozeAutomationRole to allow Github to assume this 
 ## Fullstack (API & Web App) service
 
 In order to create a Golden Template for a Fullstack application, that will work with the Compoze Service Catalog, follow the below guidelines:
+
+
+### Application Requirements
+
+In order to expose a container externally, via an Application Load Balancer, a port must be exposed for the load balancer to route traffic to. Compoze assumes port 5000, so your API must be running on that port.
 
 ### Application Structure 
 

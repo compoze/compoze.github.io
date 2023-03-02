@@ -22,6 +22,7 @@ For detail instructions to create an IAM role, refer to: https://docs.aws.amazon
    4. Select and apply policy "AdministratorAccess" to the role
    5. The role should be named exactly as: "CompozeAutomationRole"
 
+
 3. Enable non root accounts to interact with billing information
 
 This is done via the root account login.

@@ -10,7 +10,11 @@ Before you are off and running with Compoze, there are a few one-time set up ite
 
 ### Step 1. Register a Route 53 Domain
 
-You will need to register a domain through AWS Route 53. This will be used by Compoze to provision DNS entries for services created through the product.
+You will need to register a domain through AWS Route 53. This will be used by Compoze to provision DNS entries for services created through the product. To register a domain, open Route 53:
+
+![Register Domain](Reigster_Domain.png)
+
+Route 53 will automatically created a Hosted Zone after the domain registration is complete. You will need to provide Compoze with the Hosted Zone ID during account creation.
 
 ![Hosted Zone](Hosted_Zone.png)
 
@@ -33,6 +37,7 @@ In Step 1 of the IAM role creation, apply the following:
 
    5. Finally, in step 3, name the role exactly as: "CompozeAutomationRole" and select create role
 
+During account setup in Compoze, you will need to reference this IAM role ARN.
 
 For detail instructions to create an IAM role, refer to: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create.html.
 

@@ -26,7 +26,7 @@ Next, you will need to create an IAM Role for the Compoze product inside your AW
 
 In Step 1 of the IAM role creation, apply the following:
    1. The trusted entity type should be "AWS Account"
-   2. The role should be for Another AWS account with Account ID: "228304625426"
+   2. The role should be for Another AWS account with Account ID: "939383412842"
    3. Select the checkbox "Require external ID" and provide a UUID value
 
 ![IAM Role](IAM_Role.png)
@@ -35,7 +35,41 @@ In Step 1 of the IAM role creation, apply the following:
 
 ![IAM Role 2](IAM_Role_Step2.png))
 
-   5. Finally, in step 3, name the role exactly as: "CompozeAutomationRole" and select create role
+   5. For step 3 in AWS setup, name the role exactly as: "CompozeAutomationRole" and select create role
+
+After the role has been created, open the role and navigate to the "Trust relationships". Update the trust policy to reflect this JSON (with your correct values):
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"AWS": "arn:aws:iam::939383412842:root"
+			},
+			"Action": "sts:AssumeRole",
+			"Condition": {
+				"StringEquals": {
+					"sts:ExternalId": "{your_created_external_ID}"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Principal": {
+				"Federated": "arn:aws:iam::{your_aws_Account_id}:oidc-provider/token.actions.githubusercontent.com"
+			},
+			"Action": "sts:AssumeRoleWithWebIdentity",
+			"Condition": {
+				"StringEquals": {
+					"token.actions.githubusercontent.com:aud": "sts.amazonaws.com"
+				}
+			}
+		}
+	]
+}
+```
 
 During account setup in Compoze, you will need to reference this IAM role ARN.
 

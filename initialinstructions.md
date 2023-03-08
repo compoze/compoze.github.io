@@ -31,7 +31,7 @@ In Step 1 of the IAM role creation, apply the following:
 
 ![IAM Role](IAM_Role.png)
 
-   1. Next, search for and select policy "AdministratorAccess" to the apply to the role
+   4. Next, search for and select policy "AdministratorAccess" to the apply to the role
 
 ![IAM Role 2](IAM_Role_Step2.png))
 

@@ -16,8 +16,6 @@ You will need to register a domain through AWS Route 53. This will be used by Co
 
 Route 53 will automatically created a Hosted Zone after the domain registration is complete. You will need to provide Compoze with the Hosted Zone ID during account creation.
 
-![Hosted Zone](Hosted_Zone.png)
-
 AWS detailed instructions can be found here: https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html
 
 ### Step 2. Create a Compoze IAM Role
